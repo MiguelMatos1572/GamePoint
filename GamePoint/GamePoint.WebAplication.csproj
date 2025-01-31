@@ -12,4 +12,8 @@
     <PackageReference Include="Refit.Newtonsoft.Json" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GamePoint.WebAPI\GamePoint.WebAPI.csproj" />
+  </ItemGroup>
+
 </Project>
