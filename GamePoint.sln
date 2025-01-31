@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamePoint", "GamePoint\GamePoint.csproj", "{66781CAE-F158-4074-8044-0084160008BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamePoint.WebAplication", "GamePoint\GamePoint.WebAplication.csproj", "{66781CAE-F158-4074-8044-0084160008BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamePoint.WebAPI", "GamePoint.WebAPI\GamePoint.WebAPI.csproj", "{AAA5131C-F923-45D9-9650-CB71A4D110D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamePointDB", "GamePointDB\GamePointDB.csproj", "{1F38E7BA-932F-4939-A81E-F8F15FBDD3B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{66781CAE-F158-4074-8044-0084160008BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66781CAE-F158-4074-8044-0084160008BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66781CAE-F158-4074-8044-0084160008BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAA5131C-F923-45D9-9650-CB71A4D110D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAA5131C-F923-45D9-9650-CB71A4D110D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAA5131C-F923-45D9-9650-CB71A4D110D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAA5131C-F923-45D9-9650-CB71A4D110D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F38E7BA-932F-4939-A81E-F8F15FBDD3B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F38E7BA-932F-4939-A81E-F8F15FBDD3B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F38E7BA-932F-4939-A81E-F8F15FBDD3B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F38E7BA-932F-4939-A81E-F8F15FBDD3B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
