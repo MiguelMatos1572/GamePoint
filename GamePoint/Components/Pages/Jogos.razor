@@ -1,0 +1,25 @@
+﻿@page "/jogos"
+@using GamePoint.WebAplication.Entity
+
+
+<h1>Jogos</h1>
+<p>Lista de jogos disponíveis.</p>
+
+<h2>Adicionar Novo Jogo</h2>
+<EditForm Model="novoProduto" OnValidSubmit="AdicionarProduto">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label>Nome:</label>
+        <InputText @bind-Value="novoProduto.Name" />
+        <ValidationMessage For="@(() => novoProduto.Name)" />
+    </div>
+    <div>
+        <label>Preço:</label>
+        <InputNumber @bind-Value="novoProduto.Preco" />
+        <ValidationMessage For="@(() => novoProduto.Preco)" />
+    </div>
+    <button type="submit">Adicionar Jogo</button>
+</EditForm>
+

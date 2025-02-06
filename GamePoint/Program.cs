@@ -1,10 +1,18 @@
+
+using GamePoint.WebAplication;
+using Refit;
 using GamePoint.WebAplication.Components;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services
+    .AddRefitClient<IWebApi>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7248"));
 
 var app = builder.Build();
 
