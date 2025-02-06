@@ -1,4 +1,4 @@
-using GamePoint.Components;
+using GamePoint.WebAplication.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
