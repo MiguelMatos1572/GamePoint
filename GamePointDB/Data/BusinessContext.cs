@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GamePointDB.Data
 {
-    internal class BusinessContext : DbContext, IBusinessContext
+    public class BusinessContext : DbContext, IBusinessContext
     {
         public DbSet<Product> Products { get; set; }
 

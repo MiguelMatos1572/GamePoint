@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GamePoint.WebAPI\GamePoint.WebAPI.csproj" />
+    <ProjectReference Include="..\GamePointDB\GamePointDB.csproj" />
   </ItemGroup>
 
 </Project>

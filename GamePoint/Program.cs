@@ -1,8 +1,6 @@
-
 using GamePoint.WebAplication;
 using Refit;
 using GamePoint.WebAplication.Components;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
