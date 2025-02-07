@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Http
 @using System.Collections.Generic
 @using GamePoint.WebAPI.Models
@@ -7,6 +8,27 @@
 @rendermode InteractiveServer
 
 <h1>Loja de Jogos</h1>
+
+
+
+<div class="search-container">
+    <input type="text" @bind-value="SearchTerm" placeholder="Search..." class="search-input">
+    <button type="button" class="search-button" @onclick="Search">
+        <span class="oi oi-magnifying-glass"></span>
+    </button>
+</div>
+
+@code {
+    private string SearchTerm { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnSearch { get; set; }
+
+    private void Search()
+    {
+        OnSearch.InvokeAsync(SearchTerm);
+    }
+}
 
 <div>
     <h2><a href="/jogos">Jogos</a></h2>
