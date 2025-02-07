@@ -1,5 +1,9 @@
-﻿using GamePoint.WebAPI.Models;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using GamePoint.WebAPI.Models;
 using Refit;
+using GamePointDB.Entity;
+using GamePointDB.Data;
 
 namespace GamePoint.WebAplication
 {

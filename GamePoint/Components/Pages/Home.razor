@@ -1,6 +1,10 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.Http
 @using System.Collections.Generic
-
+@using GamePoint.WebAPI.Models
+@using GamePointDB.Entity
+@using GamePointDB.Data
+@rendermode InteractiveServer
 
 <h1>Loja de Jogos</h1>
 
@@ -11,7 +15,92 @@
     <h2><a href="/giftcards">Gift Cards</a></h2>
 </div>
 
+
+<h1>GamePoint Dashboard</h1>
+
+<div class="dashboard-section">
+    <h2>Jogos</h2>
+    @if (jogos.Count > 0)
+    {
+        @foreach (var jogo in jogos)
+        {
+            <div class="product-item">
+                <img src="@jogo.ImageUrl" alt="@jogo.Name">
+                <h3>@jogo.Name</h3>
+                <p>@jogo.Description</p>
+                <p>Price: @jogo.Price</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Sem jogos encontrados.</p>
+    }
+</div>
+
+<div class="dashboard-section">
+    <h2>Consolas</h2>
+    @if (consolas.Count > 0)
+    {
+        @foreach (var consola in consolas)
+        {
+            <div class="product-item">
+                <img src="@consola.ImageUrl" alt="@consola.Name">
+                <h3>@consola.Name</h3>
+                <p>@consola.Description</p>
+                <p>Price: @consola.Price</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Sem acessórios encontrados.</p>
+    }
+</div>
+
+<div class="dashboard-section">
+    <h2>Acessorios</h2>
+    @if (acessorios.Count > 0)
+    {
+        @foreach (var acessorio in acessorios)
+        {
+            <div class="product-item">
+                <img src="@acessorio.ImageUrl" alt="@acessorio.Name">
+                <h3>@acessorio.Name</h3>
+                <p>@acessorio.Description</p>
+                <p>Price: @acessorio.Price</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Sem acessórios encontrados.</p>
+    }
+</div>
+
+<div class="dashboard-section">
+    <h2>Gift Cards</h2>
+    @if (giftcards.Count > 0)
+    {
+        @foreach (var giftcard in giftcards)
+        {
+            <div class="product-item">
+                <img src="@giftcard.ImageUrl" alt="@giftcard.Name">
+                <h3>@giftcard.Name</h3>
+                <p>@giftcard.Description</p>
+                <p>Price: @giftcard.Price</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Sem acessórios encontrados.</p>
+    }
+</div>
+
+
+
 @code
 {
-    List<GamePoint.Gamepoint>
+    
 }
