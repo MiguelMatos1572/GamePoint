@@ -11,5 +11,8 @@ namespace GamePoint.WebAplication
     {
         [Get("/gettasks")]
         Task<List<GamePointModel>> GetGamePoints();
+
+        [Delete("/deleteproduct")]
+        Task<HttpResponseMessage> DeleteProduct(long id);
     }
 }

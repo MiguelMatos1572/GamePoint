@@ -26,7 +26,25 @@ namespace GamePoint.WebAPI.Controllers
             return Ok(taskTable);
         }
 
-        [HttpPut("updatestock")]
+        [HttpDelete("/deleteproduct")]
+        public async Task<IActionResult> DeleteTodo(long id)
+        {
+            var todo = await _businessContext.Products.FirstOrDefaultAsync(t => t.Id.Equals(id));
+
+            if (todo is null)
+                return BadRequest();
+
+            todo.IsDeleted = true;
+
+            var result = await _businessContext.SaveChangesAsync();
+
+            if (result.Equals(1))
+                return Ok();
+
+            return BadRequest();
+        }
+
+        [HttpPut("/updatestock")]
         public async Task<IActionResult> UpdateStock(StockModel stockModel)
         {
             var stock = await _businessContext.Stocks.FirstOrDefaultAsync(p => p.Id.Equals(stockModel.Id));

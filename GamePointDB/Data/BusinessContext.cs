@@ -11,6 +11,7 @@ namespace GamePointDB.Data
     public class BusinessContext : DbContext, IBusinessContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -18,17 +18,6 @@
     </button>
 </div>
 
-@code {
-    private string SearchTerm { get; set; }
-
-    [Parameter]
-    public EventCallback<string> OnSearch { get; set; }
-
-    private void Search()
-    {
-        OnSearch.InvokeAsync(SearchTerm);
-    }
-}
 
 <div>
     <h2><a href="/jogos">Jogos</a></h2>
@@ -124,5 +113,18 @@
 
 @code
 {
-    
+    private async void DeleteProduct(long id)
+    {
+        var response = await WebApi.DeleteProduct(id);
+    }
+
+    private string SearchTerm { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnSearch { get; set; }
+
+    private void Search()
+    {
+        OnSearch.InvokeAsync(SearchTerm);
+    }
 }
