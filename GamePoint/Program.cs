@@ -1,6 +1,7 @@
 using GamePoint.WebAplication;
 using Refit;
 using GamePoint.WebAplication.Components;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,9 @@ builder.Services.AddRazorComponents()
 builder.Services
     .AddRefitClient<IWebApi>()
     .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7248"));
+
+builder.Services.AddMudServices();
+    
 
 var app = builder.Build();
 
