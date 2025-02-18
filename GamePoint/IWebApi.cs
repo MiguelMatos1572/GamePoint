@@ -9,8 +9,11 @@ namespace GamePoint.WebAplication
 {
     public interface IWebApi
     {
-        [Get("/gettasks")]
-        Task<List<GamePointModel>> GetGamePoints();
+        [Get("/getproduct")]
+        Task<List<ProductModel>> GetProduct();
+
+        [Post("/addProducts")]
+        Task<HttpResponseMessage> AddProduct([FromBody] GamePoint.WebAPI.Models.ProductModel productModel);
 
         [Delete("/deleteproduct")]
         Task<HttpResponseMessage> DeleteProduct(long id);

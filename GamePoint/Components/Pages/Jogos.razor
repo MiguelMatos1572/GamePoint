@@ -1,5 +1,5 @@
 ﻿@page "/jogos"
-@using GamePoint.WebAplication.Entity
+@using GamePoint.WebAPI.Models
 
 
 <h1>Jogos</h1>
@@ -17,8 +17,8 @@
     </div>
     <div>
         <label>Preço:</label>
-        <InputNumber @bind-Value="novoProduto.Preco" />
-        <ValidationMessage For="@(() => novoProduto.Preco)" />
+        <InputNumber @bind-Value="novoProduto.Price" />
+        <ValidationMessage For="@(() => novoProduto.Price)" />
     </div>
     <button type="submit">Adicionar Jogo</button>
 </EditForm>

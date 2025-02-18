@@ -7,6 +7,8 @@
 @using GamePointDB.Data
 @rendermode InteractiveServer
 
+@inject IWebApi WebApi
+
 <h1>Loja de Jogos</h1>
 
 
@@ -27,7 +29,7 @@
 </div>
 
 
-<h1>GamePoint Dashboard</h1>
+@* <h1>GamePoint Dashboard</h1>
 
 <div class="dashboard-section">
     <h2>Jogos</h2>
@@ -107,12 +109,19 @@
     {
         <p>Sem acessórios encontrados.</p>
     }
-</div>
+</div> *@
 
 
 
 @code
 {
+    List<ProductModel> ProductItems { get; set; } = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        ProductItems = await WebApi.GetProduct();
+    }
+
     private async void DeleteProduct(long id)
     {
         var response = await WebApi.DeleteProduct(id);

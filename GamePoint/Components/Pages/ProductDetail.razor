@@ -1,20 +1,22 @@
 ﻿@page "/products/{Id:int}"
 @using GamePoint.WebAPI.Models
-@inject IDummyJsonApi DummyJsonApi
+@rendermode InteractiveServer
+
+@inject IWebApi WebApi
 
 <h3>Product Detail</h3>
 
 <p>@_productDetail.Description</p>
 
 @code {
-    private Product _productDetail = new();
-
     [Parameter]
     public int Id { get; set; }
 
+    private ProductModel _productDetail { get; set; } = new();
+
     protected override async Task OnParametersSetAsync()
     {
-        _productDetail = await DummyJsonApi.GetProduct(Id);
+        _productDetail = await WebApi.GetProduct(Id);
     }
 
 }
