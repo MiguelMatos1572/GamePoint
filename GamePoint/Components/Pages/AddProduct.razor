@@ -1,7 +1,52 @@
-﻿@p
+﻿@page "/addproduct"
+@using GamePoint.WebAPI.Models
+@rendermode InteractiveServer
+@inject HttpClient Http
+
+
+@inject IWebApi WebApi
+
+<EditForm FormName="AddProductForm" Model="@productModel" OnValidSubmit="SaveProduct">
+    <InputText @bind-Value=productModel.Name />
+    <InputText @bind-Value=productModel.Description />
+    <button type="submit">Add</button>
+</EditForm>
 
 <h3>AddProduct</h3>
 
 @code {
+    private ProductModel productModel { get; set; } = new();
 
+    private async void SaveProduct()
+    {
+        var newProduct = new GamePoint.WebAPI.Models.ProductModel();
+
+        newProduct.Name = productModel.Name;
+        newProduct.Description = productModel.Description;
+        newProduct.Price = productModel.Price;
+        newProduct.ImageUrl = productModel.ImageUrl;
+        newProduct.Category = productModel.Category;
+        newProduct.Id = 0;
+        try
+        {
+            var stringJson = new StringContent(
+                System.Text.Json.JsonSerializer.Serialize(newProduct),
+                System.Text.Encoding.UTF8,
+                "application/json"
+            );
+
+            HttpClientHandler handler = new HttpClientHandler();
+
+            using (var client = new HttpClient(handler, false))
+            {
+                var response = await Http.PostAsync("https://localhost:7248/addtodos", stringJson);
+            }
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+
+    }
 }

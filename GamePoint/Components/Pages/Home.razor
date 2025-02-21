@@ -115,12 +115,12 @@
 
 @code
 {
-    List<ProductModel> ProductItems { get; set; } = new();
+    // List<GamePoint.WebAPI.Models.ProductModel> ProductItems { get; set; } = new();
 
-    protected override async Task OnParametersSetAsync()
-    {
-        ProductItems = await WebApi.GetProduct();
-    }
+    // protected override async Task OnParametersSetAsync()
+    // {
+    //     ProductItems = await WebApi.GetProducts();
+    // }
 
     private async void DeleteProduct(long id)
     {

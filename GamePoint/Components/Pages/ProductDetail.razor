@@ -6,17 +6,28 @@
 
 <h3>Product Detail</h3>
 
-<p>@_productDetail.Description</p>
+<EditForm FormName="UpdateTaskForm" Model="@productModel" OnValidSubmit="SaveProduct">
+    <InputText @bind-Value=productModel.Name />
+    <InputText @bind-Value=productModel.Description />
+    <button type="submit">Save</button>
+</EditForm>
+
 
 @code {
+
     [Parameter]
     public int Id { get; set; }
 
-    private ProductModel _productDetail { get; set; } = new();
+    private ProductModel productModel { get; set; } = new();
 
     protected override async Task OnParametersSetAsync()
     {
-        _productDetail = await WebApi.GetProduct(Id);
+        productModel = await WebApi.GetProduct(Id);
     }
 
+    private async void SaveProduct()
+    {
+        var result = await WebApi.UpdateProduct(productModel);
+
+    }
 }
