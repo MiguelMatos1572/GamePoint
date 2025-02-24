@@ -13,12 +13,7 @@
 
 
 
-<div class="search-container">
-    <input type="text" @bind-value="SearchTerm" placeholder="Search..." class="search-input">
-    <button type="button" class="search-button" @onclick="Search">
-        <span class="oi oi-magnifying-glass"></span>
-    </button>
-</div>
+
 
 
 <div>
@@ -127,13 +122,5 @@
         var response = await WebApi.DeleteProduct(id);
     }
 
-    private string SearchTerm { get; set; }
-
-    [Parameter]
-    public EventCallback<string> OnSearch { get; set; }
-
-    private void Search()
-    {
-        OnSearch.InvokeAsync(SearchTerm);
-    }
+    
 }
