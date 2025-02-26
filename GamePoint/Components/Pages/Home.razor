@@ -33,9 +33,9 @@
                     <div class="col">
                         <button class="btn btn-danger" @onclick="() => DeleteProduct(item.Id) ">Delete</button>
                     </div>
-                    <div class="col">
+                    @*<div class="col">
                         <button class="btn btn-success" @onclick="() => NavigationDetail(item.Id) ">Open</button>
-                    </div>
+                    </div>*@
                 </div>
             }
         </div>
@@ -135,7 +135,7 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        ProductItems = await WebApi.GetProducts();
+       @* ProductItems = await WebApi.GetProducts();*@
     }
 
     private async void DeleteProduct(long id)
