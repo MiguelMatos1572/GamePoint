@@ -9,8 +9,18 @@
 <EditForm FormName="UpdateTaskForm" Model="@productModel" OnValidSubmit="SaveProduct">
     <InputText @bind-Value=productModel.Name />
     <InputText @bind-Value=productModel.Description />
+    <InputNumber @bind-Value=productModel.Price />
+    <InputNumber @bind-Value=categoryModel.Name/>
     <button type="submit">Save</button>
 </EditForm>
+
+<EditForm FormName="UpdateTaskForm" Model="@productModel" OnValidSubmit="SaveStock">
+    <InputText @bind-Value=stockModel.MovementType />
+    <InputNumber @bind-Value=stockModel.Quantity />
+    <InputNumber @bind-Value=categoryModel.Name />
+    <button type="submit">Save</button>
+</EditForm>
+
 
 
 @code {
@@ -19,6 +29,8 @@
     public int Id { get; set; }
 
     private ProductModel productModel { get; set; } = new();
+    private CategoryModel categoryModel { get; set; } = new();
+    private StockModel stockModel { get; set; } = new();
 
     protected override async Task OnParametersSetAsync()
     {
@@ -28,6 +40,12 @@
     private async void SaveProduct()
     {
         var result = await WebApi.UpdateProduct(productModel);
+
+    }
+
+    private async void SaveStock()
+    {
+        var result = await WebApi.UpdateStock(stockModel);
 
     }
 }

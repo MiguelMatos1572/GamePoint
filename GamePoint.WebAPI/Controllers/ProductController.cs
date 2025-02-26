@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 using GamePointDB.Data;
 using GamePointDB.Entity;
 using GamePoint.WebAPI.Models;
@@ -42,7 +41,7 @@ namespace GamePoint.WebAPI.Controllers
             newProduct.Name = productModel.Name;
             newProduct.Description = productModel.Description;
             newProduct.Price = productModel.Price;
-            newProduct.Category = productModel.Category;
+            //newProduct.Category = Category.Id;
 
             _businessContext.Products.Add(newProduct);
 

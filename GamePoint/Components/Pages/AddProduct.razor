@@ -9,6 +9,9 @@
 <EditForm FormName="AddProductForm" Model="@productModel" OnValidSubmit="SaveProduct">
     <InputText @bind-Value=productModel.Name />
     <InputText @bind-Value=productModel.Description />
+    <InputNumber @bind-Value=productModel.Price />
+    <InputText @bind-Value=productModel.ImageUrl />
+    <InputNumber @bind-Value=productModel.CategoryId />
     <button type="submit">Add</button>
 </EditForm>
 
@@ -25,7 +28,7 @@
         newProduct.Description = productModel.Description;
         newProduct.Price = productModel.Price;
         newProduct.ImageUrl = productModel.ImageUrl;
-        newProduct.Category = productModel.Category;
+        newProduct.CategoryId = productModel.CategoryId;
         newProduct.Id = 0;
         try
         {
