@@ -23,5 +23,8 @@ namespace GamePoint.WebAplication
 
         [Put("/updateproduct")]
         Task<HttpResponseMessage> UpdateProduct([FromBody] ProductModel productModel);
+
+        [Put("/updatestock")]
+        Task<HttpResponseMessage> UpdateStock([FromBody] StockModel stockModel);
     }
 }

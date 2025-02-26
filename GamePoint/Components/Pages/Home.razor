@@ -7,26 +7,42 @@
 @using GamePointDB.Data
 @rendermode InteractiveServer
 
+@inject NavigationManager NavigationManager
 @inject IWebApi WebApi
 
 <h1>Loja de Jogos</h1>
 
-
-
-<div class="search-container">
-    <input type="text" @bind-value="SearchTerm" placeholder="Search..." class="search-input">
-    <button type="button" class="search-button" @onclick="Search">
-        <span class="oi oi-magnifying-glass"></span>
-    </button>
-</div>
-
-
 <div>
-    <h2><a href="/jogos">Jogos</a></h2>
-    <h2><a href="/consolas">Consolas</a></h2>
-    <h2><a href="/acessorios">Acessórios</a></h2>
-    <h2><a href="/giftcards">Gift Cards</a></h2>
+    @if (ProductItems.Any())
+    {
+        <div class="container text-center">
+
+
+            @foreach (var item in ProductItems.Where(x => x.IsDeleted.Equals(false)))
+            {
+                <div class="row">
+                    <div class="col">
+                        @item.Name
+                    </div>
+                    <div class="col">
+                        @item.Description
+                    </div>
+                    <div class="col">
+                        @item.Price
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-danger" @onclick="() => DeleteProduct(item.Id) ">Delete</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-success" @onclick="() => NavigationDetail(item.Id) ">Open</button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
 </div>
+
+
 
 
 @* <h1>GamePoint Dashboard</h1>
@@ -115,16 +131,21 @@
 
 @code
 {
-    // List<GamePoint.WebAPI.Models.ProductModel> ProductItems { get; set; } = new();
+    List<ProductModel> ProductItems { get; set; } = new();
 
-    // protected override async Task OnParametersSetAsync()
-    // {
-    //     ProductItems = await WebApi.GetProducts();
-    // }
+    protected override async Task OnParametersSetAsync()
+    {
+        ProductItems = await WebApi.GetProducts();
+    }
 
     private async void DeleteProduct(long id)
     {
         var response = await WebApi.DeleteProduct(id);
+    }
+
+    private void NavigationDetail(long id)
+    {
+        NavigationManager.NavigateTo($"/todo/{id}", true);
     }
 
     private string SearchTerm { get; set; }
