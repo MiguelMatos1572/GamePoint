@@ -10,16 +10,16 @@
     <InputText @bind-Value=productModel.Name />
     <InputText @bind-Value=productModel.Description />
     <InputNumber @bind-Value=productModel.Price />
-    <InputNumber @bind-Value=categoryModel.Name/>
+    <InputNumber @bind-Value=categoryModel.Id/>
     <button type="submit">Save</button>
 </EditForm>
 
-<EditForm FormName="UpdateStockForm" Model="@stockModel" OnValidSubmit="SaveStock">
+@* <EditForm FormName="UpdateStockForm" Model="@stockModel" OnValidSubmit="SaveStock">
     <InputNumber @bind-Value=stockModel.Quantity />
     <InputText @bind-Value=stockModel.MovementType />
     <InputNumber @bind-Value=categoryModel.Name />
     <button type="submit">Save</button>
-</EditForm>
+</EditForm> *@
 
 
 
