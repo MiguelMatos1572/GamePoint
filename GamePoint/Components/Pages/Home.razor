@@ -143,18 +143,5 @@
         var response = await WebApi.DeleteProduct(id);
     }
 
-    private void NavigationDetail(long id)
-    {
-        NavigationManager.NavigateTo($"/todo/{id}", true);
-    }
-
-    private string SearchTerm { get; set; }
-
-    [Parameter]
-    public EventCallback<string> OnSearch { get; set; }
-
-    private void Search()
-    {
-        OnSearch.InvokeAsync(SearchTerm);
-    }
+    
 }
