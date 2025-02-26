@@ -132,7 +132,7 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        ProductItems = await WebApi.GetProducts();
+       ProductItems = await WebApi.GetProducts();
     }
 
     private async void DeleteProduct(long id)
