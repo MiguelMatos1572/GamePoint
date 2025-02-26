@@ -143,5 +143,8 @@
         var response = await WebApi.DeleteProduct(id);
     }
 
-    
+    private void NavigationDetail(long id)
+    {
+        NavigationManager.NavigateTo($"/product/{id}", true);
+    }
 }
