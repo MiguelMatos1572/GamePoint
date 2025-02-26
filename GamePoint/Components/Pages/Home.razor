@@ -20,7 +20,7 @@
 
             @foreach (var item in ProductItems.Where(x => x.IsDeleted.Equals(false)))
             {
-                <div class="row">
+                <div class="row-cols-1 card w-25">
                     <div class="col">
                         @item.Name
                     </div>
@@ -28,13 +28,10 @@
                         @item.Description
                     </div>
                     <div class="col">
-                        @item.Price
+                        @item.Price 
                     </div>
                     <div class="col">
-                        <button class="btn btn-danger" @onclick="() => DeleteProduct(item.Id) ">Delete</button>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-success" @onclick="() => NavigationDetail(item.Id) ">Open</button>
+                        <button class="btn btn-success" @onclick="() => NavigationDetail(item.Id) ">Detalhes</button> <button class="btn btn-danger" @onclick="() => DeleteProduct(item.Id) ">Delete</button>
                     </div>
                 </div>
             }

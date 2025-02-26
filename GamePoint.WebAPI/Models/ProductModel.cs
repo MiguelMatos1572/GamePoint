@@ -21,7 +21,7 @@ namespace GamePoint.WebAPI.Models
         public string ImageUrl { get; set; }
 
         [JsonPropertyName("category")]
-        public int CategoryId { get; set; }
+        public Category CategoryId { get; set; }
 
         [JsonPropertyName("isDeleted")]
         public bool IsDeleted { get; set; }
