@@ -1,4 +1,4 @@
-﻿@page "/products/{Id:int}"
+﻿@page "/product/{Id:int}"
 @using GamePoint.WebAPI.Models
 @rendermode InteractiveServer
 
@@ -15,8 +15,8 @@
 </EditForm>
 
 <EditForm FormName="UpdateTaskForm" Model="@productModel" OnValidSubmit="SaveStock">
-    <InputText @bind-Value=stockModel.MovementType />
     <InputNumber @bind-Value=stockModel.Quantity />
+    <InputText @bind-Value=stockModel.MovementType />
     <InputNumber @bind-Value=categoryModel.Name />
     <button type="submit">Save</button>
 </EditForm>
