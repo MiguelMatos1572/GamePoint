@@ -10,8 +10,8 @@
     <InputText @bind-Value=productModel.Name />
     <InputText @bind-Value=productModel.Description />
     <InputNumber @bind-Value=productModel.Price />
-    <InputText @bind-Value=productModel.ImageUrl />
-    <InputNumber @bind-Value=productModel.CategoryId />
+    <InputNumber @bind-Value=productModel.ImageUrl />
+    <InputNumber @bind-Value=categoryModel.Id />
     <button type="submit">Add</button>
 </EditForm>
 
@@ -19,6 +19,7 @@
 
 @code {
     private ProductModel productModel { get; set; } = new();
+    private CategoryModel categoryModel { get; set; } = new();
 
     private async void SaveProduct()
     {
