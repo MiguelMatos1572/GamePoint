@@ -17,11 +17,13 @@ namespace GamePoint.WebAPI.Models
         [JsonPropertyName("price")]
         public decimal Price { get; set; }
 
-        [JsonPropertyName("imageUrl")]
-        public string ImageUrl { get; set; }
+        public List<Image>? Image { get; set; }
 
         [JsonPropertyName("category")]
-        public Category CategoryId { get; set; }
+        public Category? Category { get; set; }
+
+        [JsonPropertyName("categoryId")]
+        public int CategoryId { get; set; }
 
         [JsonPropertyName("isDeleted")]
         public bool IsDeleted { get; set; }

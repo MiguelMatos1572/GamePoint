@@ -24,7 +24,7 @@ namespace GamePoint.WebAPI.Controllers
         [HttpGet("/getproducts")]
         public async Task<IActionResult> GetProducts()
         {
-            var taskTable = await _businessContext.Products.ToListAsync();
+            var taskTable = await _businessContext.Products.Include(x => x.Image).Include(x => x.Category).ToListAsync();
 
             return Ok(taskTable);
         }
@@ -41,7 +41,7 @@ namespace GamePoint.WebAPI.Controllers
             newProduct.Name = productModel.Name;
             newProduct.Description = productModel.Description;
             newProduct.Price = productModel.Price;
-            //newProduct.Category = Category.Id;
+            newProduct.CategoryId = productModel.CategoryId;
 
             _businessContext.Products.Add(newProduct);
 

@@ -10,8 +10,8 @@
     <InputText @bind-Value=productModel.Name />
     <InputText @bind-Value=productModel.Description />
     <InputNumber @bind-Value=productModel.Price />
-    <InputNumber @bind-Value=productModel.ImageUrl />
-    <InputNumber @bind-Value=categoryModel.Id />
+    @* <InputNumber @bind-Value=productModel.ImageUrl /> *@
+    <InputNumber @bind-Value=productModel.CategoryId />
     <button type="submit">Add</button>
 </EditForm>
 
@@ -28,7 +28,6 @@
         newProduct.Name = productModel.Name;
         newProduct.Description = productModel.Description;
         newProduct.Price = productModel.Price;
-        newProduct.ImageUrl = productModel.ImageUrl;
         newProduct.CategoryId = productModel.CategoryId;
         newProduct.Id = 0;
         try
@@ -43,7 +42,7 @@
 
             using (var client = new HttpClient(handler, false))
             {
-                var response = await Http.PostAsync("https://localhost:7248/addtodos", stringJson);
+                var response = await Http.PostAsync("https://localhost:7248/addproducts", stringJson);
             }
         }
         catch(Exception e)

@@ -12,34 +12,6 @@
 
 <h1>Loja de Jogos</h1>
 
-@* <div>
-    @if (ProductItems.Any())
-    {
-        <div class="d-flex flex-wrap">
-
-
-            @foreach (var item in ProductItems.Where(x => x.IsDeleted.Equals(false)))
-            {
-                <div class="row-cols-1 card w-25">
-                    <div class="col">
-                        @item.Name
-                    </div>
-                    <div class="col">
-                        @item.Description
-                    </div>
-                    <div class="col">
-                        @item.Price 
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-success" @onclick="() => NavigationDetail(item.Id) ">Detalhes</button> <button class="btn btn-danger" @onclick="() => DeleteProduct(item.Id) ">Delete</button>
-                    </div>
-                </div>
-
-            }
-        </div>
-    }
-</div> *@
-
 <div>
     @if (ProductItems.Any())
     {
@@ -49,11 +21,12 @@
             @foreach (var item in ProductItems.Where(x => x.IsDeleted.Equals(false)))
             {
                 <MudCard class="w-25 m-2">
-                    <MudCardMedia Image="@item.ImageUrl" Height="200" />
+                    <MudCardMedia Image="@item.Image.FirstOrDefault()?.Url" Height="200" />
                     <MudCardContent>
                         <MudText Typo="Typo.h5"></MudText>
                         <MudText Typo="Typo.body2">@item.Name</MudText>
                         <MudText Typo="Typo.body2">@item.Description</MudText>
+                        <MudText Typo="Typo.body2">@item.Category.Name</MudText>
                         <MudText Typo="Typo.body2">@item.Price €</MudText>
                     </MudCardContent>
                     <MudCardActions>
