@@ -1,7 +1,147 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Http
+@using System.Collections.Generic
+@using GamePoint.WebAPI.Models
+@using GamePointDB.Entity
+@using GamePointDB.Data
+@rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
+@inject NavigationManager NavigationManager
+@inject IWebApi WebApi
 
-<h1>Hello, world!</h1>
+<h1>Loja de Jogos</h1>
 
-Welcome to your new app.
+<div>
+    @if (ProductItems.Any())
+    {
+        <div class="d-flex flex-wrap">
+
+
+            @foreach (var item in ProductItems.Where(x => x.IsDeleted.Equals(false)))
+            {
+                <MudCard class="w-25 m-2">
+                    <MudCardMedia Image="@item.Image.FirstOrDefault()?.Url" Height="200" />
+                    <MudCardContent>
+                        <MudText Typo="Typo.h5"></MudText>
+                        <MudText Typo="Typo.body2">@item.Name</MudText>
+                        <MudText Typo="Typo.body2">@item.Description</MudText>
+                        <MudText Typo="Typo.body2">@item.Category.Name</MudText>
+                        <MudText Typo="Typo.body2">@item.Price €</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Text" Color="Color.Success" OnClick="() => NavigationDetail(item.Id)">Details</MudButton> <MudButton Variant="Variant.Text" Color="Color.Error" OnClick="() => DeleteProduct(item.Id)">Delete</MudButton>
+                    </MudCardActions>
+                </MudCard>
+
+            }
+        </div>
+    }
+</div>
+
+
+
+
+@* <h1>GamePoint Dashboard</h1>
+
+<div class="dashboard-section">
+    <h2>Jogos</h2>
+    @if (jogos.Count > 0)
+    {
+        @foreach (var jogo in jogos)
+        {
+            <div class="product-item">
+                <img src="@jogo.ImageUrl" alt="@jogo.Name">
+                <h3>@jogo.Name</h3>
+                <p>@jogo.Description</p>
+                <p>Price: @jogo.Price</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Sem jogos encontrados.</p>
+    }
+</div>
+
+<div class="dashboard-section">
+    <h2>Consolas</h2>
+    @if (consolas.Count > 0)
+    {
+        @foreach (var consola in consolas)
+        {
+            <div class="product-item">
+                <img src="@consola.ImageUrl" alt="@consola.Name">
+                <h3>@consola.Name</h3>
+                <p>@consola.Description</p>
+                <p>Price: @consola.Price</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Sem acessórios encontrados.</p>
+    }
+</div>
+
+<div class="dashboard-section">
+    <h2>Acessorios</h2>
+    @if (acessorios.Count > 0)
+    {
+        @foreach (var acessorio in acessorios)
+        {
+            <div class="product-item">
+                <img src="@acessorio.ImageUrl" alt="@acessorio.Name">
+                <h3>@acessorio.Name</h3>
+                <p>@acessorio.Description</p>
+                <p>Price: @acessorio.Price</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Sem acessórios encontrados.</p>
+    }
+</div>
+
+<div class="dashboard-section">
+    <h2>Gift Cards</h2>
+    @if (giftcards.Count > 0)
+    {
+        @foreach (var giftcard in giftcards)
+        {
+            <div class="product-item">
+                <img src="@giftcard.ImageUrl" alt="@giftcard.Name">
+                <h3>@giftcard.Name</h3>
+                <p>@giftcard.Description</p>
+                <p>Price: @giftcard.Price</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Sem acessórios encontrados.</p>
+    }
+</div> *@
+
+
+
+@code
+{
+    List<ProductModel> ProductItems { get; set; } = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+       ProductItems = await WebApi.GetProducts();
+    }
+
+    private async void DeleteProduct(long id)
+    {
+        var response = await WebApi.DeleteProduct(id);
+    }
+
+    private void NavigationDetail(long id)
+    {
+        NavigationManager.NavigateTo($"/product/{id}", true);
+    }
+}

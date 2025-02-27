@@ -1,0 +1,51 @@
+﻿@page "/product/{Id:int}"
+@using GamePoint.WebAPI.Models
+@rendermode InteractiveServer
+
+@inject IWebApi WebApi
+
+<h3>Product Detail</h3>
+
+<EditForm FormName="UpdateProductForm" Model="@productModel" OnValidSubmit="SaveProduct">
+    <InputText @bind-Value=productModel.Name />
+    <InputText @bind-Value=productModel.Description />
+    <InputNumber @bind-Value=productModel.Price />
+    <InputNumber @bind-Value=categoryModel.Id/>
+    <button type="submit">Save</button>
+</EditForm>
+
+@* <EditForm FormName="UpdateStockForm" Model="@stockModel" OnValidSubmit="SaveStock">
+    <InputNumber @bind-Value=stockModel.Quantity />
+    <InputText @bind-Value=stockModel.MovementType />
+    <InputNumber @bind-Value=categoryModel.Name />
+    <button type="submit">Save</button>
+</EditForm> *@
+
+
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private ProductModel productModel { get; set; } = new();
+    private CategoryModel categoryModel { get; set; } = new();
+    private StockModel stockModel { get; set; } = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        productModel = await WebApi.GetProduct(Id);
+    }
+
+    private async void SaveProduct()
+    {
+        var result = await WebApi.UpdateProduct(productModel);
+
+    }
+
+    private async void SaveStock()
+    {
+        var result = await WebApi.UpdateStock(stockModel);
+
+    }
+}
