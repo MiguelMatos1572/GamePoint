@@ -54,14 +54,14 @@ namespace GamePoint.WebAPI.Controllers
         }
 
         [HttpDelete("/deleteproduct")]
-        public async Task<IActionResult> DeleteTodo(long id)
+        public async Task<IActionResult> DeleteProduct(int id)
         {
-            var todo = await _businessContext.Products.FirstOrDefaultAsync(t => t.Id.Equals(id));
+            var product = await _businessContext.Products.FirstOrDefaultAsync(x => x.Id.Equals(id));
 
-            if (todo is null)
+            if (product is null)
                 return BadRequest();
 
-            todo.IsDeleted = true;
+            product.IsDeleted = true;
 
             var result = await _businessContext.SaveChangesAsync();
 
