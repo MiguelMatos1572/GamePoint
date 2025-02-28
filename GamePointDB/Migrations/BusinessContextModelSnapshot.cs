@@ -36,7 +36,7 @@ namespace GamePointDB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("GamePointDB.Entity.Image", b =>
@@ -58,7 +58,7 @@ namespace GamePointDB.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Image");
+                    b.ToTable("Image", (string)null);
                 });
 
             modelBuilder.Entity("GamePointDB.Entity.Product", b =>
@@ -90,7 +90,7 @@ namespace GamePointDB.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("GamePointDB.Entity.Stock", b =>
@@ -118,7 +118,7 @@ namespace GamePointDB.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Stocks");
+                    b.ToTable("Stocks", (string)null);
                 });
 
             modelBuilder.Entity("GamePointDB.Entity.Image", b =>

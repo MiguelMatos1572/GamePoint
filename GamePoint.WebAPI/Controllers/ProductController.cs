@@ -28,6 +28,18 @@ namespace GamePoint.WebAPI.Controllers
 
             return Ok(taskTable);
         }
+        
+        [HttpGet("/getproduct")]
+        public async Task<IActionResult> GetProduct(int id)
+        {
+            var taskTable = await _businessContext.Products.FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id.Equals(id));
+
+            if (taskTable is null)
+                return NotFound();
+
+            else
+                return Ok(taskTable);
+        }
 
         [HttpPost("/addproducts")]
         public async Task<IActionResult> AddTask(ProductModel productModel)
@@ -62,6 +74,26 @@ namespace GamePoint.WebAPI.Controllers
                 return BadRequest();
 
             product.IsDeleted = true;
+
+            var result = await _businessContext.SaveChangesAsync();
+
+            if (result.Equals(1))
+                return Ok();
+
+            return BadRequest();
+        }
+
+        [HttpPut("/updateproduct")]
+        public async Task<IActionResult> UpdateProduct(ProductModel productModel)
+        {
+            var product = await _businessContext.Products.FirstOrDefaultAsync(t => t.Id.Equals(productModel.Id));
+
+            if (product is null)
+                return BadRequest();
+
+            product.Name = productModel.Name;
+            product.Description = productModel.Description;
+            product.Price = productModel.Price;
 
             var result = await _businessContext.SaveChangesAsync();
 
